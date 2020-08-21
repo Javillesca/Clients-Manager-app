@@ -24,7 +24,7 @@ export class ClientComponent implements OnInit {
               private cs: ClientsService,
               private route: ActivatedRoute ) {
 
-    console.log('========== constructor ==========');
+    console.log('========== Client - constructor ==========');
 
     this._initFormClient();
 
@@ -32,8 +32,7 @@ export class ClientComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log('========== ngOnInit ==========');
-    console.log( this.route.snapshot.paramMap.get('id'));
+    console.log('========== Client - ngOnInit ==========');
 
     this.id = this.route.snapshot.paramMap.get('id');
 
@@ -64,8 +63,7 @@ export class ClientComponent implements OnInit {
 
   private _initFormClient(): any {
 
-    console.log('========== _initFormClient ==========');
-    console.log(this.client);
+    console.log('========== Client - _initFormClient ==========');
 
     this.formClient = this.fb.group(
       {
@@ -81,8 +79,7 @@ export class ClientComponent implements OnInit {
 
   private _loadFormClient( client: ClientModel): any {
 
-    console.log('========== _loadFormClient ==========');
-    console.log(client);
+    console.log('========== Client - _loadFormClient ==========');
 
     this.formClient.reset({
       id: [client.id],
@@ -96,8 +93,7 @@ export class ClientComponent implements OnInit {
 
   changeStatus(): any {
 
-    console.log('========== changeStatus ==========');
-    console.log( this.client.statusWork );
+    console.log('========== Client - changeStatus ==========');
 
     if ( this.client.statusWork === true ) {
       this.client.statusWork = false;
@@ -105,19 +101,18 @@ export class ClientComponent implements OnInit {
     } else {
        this.client.statusWork = true;
        this.formClient.get('statusWork').setValue(true);
-    } 
+    }
   }
 
   saveData( form: NgForm ): any {
 
-    console.log('========== saveData ==========');
-    console.log(form);
+    console.log('========== Client - saveData ==========');
 
     if ( this.formClient.invalid ) {
 
       return Object.values(this.formClient.controls).forEach(control => {
         if ( control instanceof FormGroup ) {
-          Object.values(control.controls).forEach(control =>  control.markAsTouched());
+          Object.values(control.controls).forEach(c =>  c.markAsTouched());
         } else {
           control.markAsTouched();
         }
@@ -142,7 +137,6 @@ export class ClientComponent implements OnInit {
     }
 
     petition.subscribe(reply => {
-      console.log(reply);
       Swal.fire({
         title: reply.name,
         text: 'Cliente guardado correctamente',

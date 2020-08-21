@@ -13,9 +13,16 @@ export class ClientsComponent implements OnInit {
   clients: ClientModel[] = [];
   loading: boolean = false;
 
-  constructor(private clientsService: ClientsService) { }
+  constructor(private clientsService: ClientsService) {
+
+    console.log('========== Clients - constructor ==========');
+
+   }
 
   ngOnInit(): void {
+
+    console.log('========== Clients - ngOnInit ==========');
+
     this.loading = true;
     this.clientsService.getClients()
       .subscribe( reply => {
@@ -26,6 +33,9 @@ export class ClientsComponent implements OnInit {
   }
 
   deleteClient( client: ClientModel, i: number ): any  {
+
+    console.log('========== Clients - deleteClient ==========');
+
     Swal.fire({
       title: 'Confirmación',
       text: `¿Desea eliminar ${ client.name }?`,

@@ -18,6 +18,8 @@ export class ClientsService {
 
   createClient(client: ClientModel ): any {
 
+    console.log('========== Service - createClient ==========');
+
     return this.http.post(`${ this.url }/clients.json`, client)
       .pipe(
         map( (resp: any) => {
@@ -29,6 +31,8 @@ export class ClientsService {
   }
 
   updateClient(client: any): any {
+
+    console.log('========== Service - updateClient ==========');
 
     const clientTemp = {
       ...client
@@ -46,6 +50,8 @@ export class ClientsService {
 
   getClients(): any {
 
+    console.log('========== Service - getClients ==========');
+
     return this.http.get(`${ this.url}/clients.json`)
               .pipe( map( reply => this.createArry(reply)));
 
@@ -53,11 +59,15 @@ export class ClientsService {
 
   getClient(id: string): any {
 
+    console.log('========== Service - getClient ==========');
+
     return this.http.get(`${ this.url }/clients/${id}.json`);
 
   }
 
   private createArry( clientsObj: object): ClientModel[] {
+
+    console.log('========== Service - createArry ==========');
 
     const clients: ClientModel[] = [];
 
@@ -68,9 +78,12 @@ export class ClientsService {
       clients.push(client);
     });
     return clients;
+
   }
 
   deleteClient(id: string ): any {
+
+    console.log('========== Service - deleteClient ==========');
 
     return this.http.delete(`${ this.url }/clients/${id}.json`);
 

@@ -15,5 +15,4 @@ export class ClientModel {
         this.service = '';
         this.statusWork = true;
     }
-
 }
