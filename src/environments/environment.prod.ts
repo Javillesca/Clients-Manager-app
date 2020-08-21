@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  url: 'https://login-app-1dc59.firebaseio.com'
 };
